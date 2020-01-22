@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+		integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<title>Steemian Explorer</title>
+	<style>
+		table {
+			font-family: arial, sans-serif;
+			border-collapse: collapse;
+			width: 100%;
+		}
+
+		td,
+		th {
+			border: 1px solid #dddddd;
+			text-align: left;
+			padding: 8px;
+		}
+
+		tr:nth-child(even) {
+			background-color: #dddddd;
+		}
+
+		.names { font-weight: bold;
+			font-size: large; }
+	</style>
+</head>
+
+<body>
+	<div class="container pt-3">
+		<h1 style="display: inline;"">Steemian Explorer</h1>
+		<h5 style="display: inline;">by <a href="https://steemit.com/@ericet" target="_blank" rel="nofollow"">@ericet</a></h5>
+			<br />
+			<br />
+
+			<form id="view" method="POST">
+				<div class="row">
+					<div class="col-md-3 col-lg-8">
+						<div class="form-group">
+							<label for="username" class="sr-only">Username</label>
+							<input type="text" name="username" id="username" autocomplete="off" class="form-control"
+								placeholder="Username" required>
+						</div>
+					</div>
+					<div class="col-md-3 col-lg-2">
+						<button class="btn btn-success btn-block" type="submit">View</button>
+					</div>
+
+				</div>
+				<div name='display' id='display'></div>
+			</form>
+			</form>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/steem/dist/steem.min.js"></script>
+	<script src="js/SteemianExplorer.js"></script>
+
+</body>
+
+</html>
