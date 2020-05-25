@@ -1,4 +1,4 @@
-steem.api.setOptions({ url: "https://api.steem.fans" });
+steem.api.setOptions({ url: "https://api.justyy.com" });
 
 //get followers list
 function getFollowersList(account, startFollowing = '', limit = 500, followings = {}) {
@@ -37,7 +37,7 @@ function getAuthorizedList(accounts, spv) {
                         if (app[0] === 'cn-trail') {
                             let sp = (Number(account.received_vesting_shares.split(' ')[0]) - Number(account.delegated_vesting_shares.split(' ')[0]) + Number(account.vesting_shares.split(' ')[0])) * spv;
                             let vp = getVPHF20(account);
-                            authorizedList.push({ name: account.name, sp: sp.toFixed(3),vp:vp.toFixed(2) });
+                            authorizedList.push({ name: account.name, sp: sp.toFixed(3), vp: vp.toFixed(2) });
                         }
                     }
                 }
@@ -69,31 +69,30 @@ function getVp(account) {
 }
 
 function getVPHF20(account) {
-	var totalShares = parseFloat(account.vesting_shares) + parseFloat(account.received_vesting_shares) - parseFloat(account.delegated_vesting_shares)- parseFloat(account.vesting_withdraw_rate);
+    var totalShares = parseFloat(account.vesting_shares) + parseFloat(account.received_vesting_shares) - parseFloat(account.delegated_vesting_shares) - parseFloat(account.vesting_withdraw_rate);
 
-	var elapsed = Date.now() / 1000 - account.voting_manabar.last_update_time;
-	var maxMana = totalShares * 1000000;
-	// 432000 sec = 5 days
-	var currentMana = parseFloat(account.voting_manabar.current_mana) + elapsed * maxMana / 432000;
+    var elapsed = Date.now() / 1000 - account.voting_manabar.last_update_time;
+    var maxMana = totalShares * 1000000;
+    // 432000 sec = 5 days
+    var currentMana = parseFloat(account.voting_manabar.current_mana) + elapsed * maxMana / 432000;
 
-	if (currentMana > maxMana) {
-		currentMana = maxMana;
-	}
+    if (currentMana > maxMana) {
+        currentMana = maxMana;
+    }
 
-	var currentManaPerc = currentMana * 100 / maxMana;
+    var currentManaPerc = currentMana * 100 / maxMana;
 
-	return Math.round(currentManaPerc * 100);
+    return Math.round(currentManaPerc * 100);
 }
 
 
 $(document).ready(async function () {
-    let followers = await getFollowersList('cn-trail');
-    let spv = await getSpv();
-    let accountVp = await getVp('cn-trail');
+
+    const [followers, spv, accountVp] = await Promise.all([getFollowersList('cn-trail'), getSpv(), getVp('cn-trail')]);
     let trailMembers = await getAuthorizedList(followers, spv);
     let totalSp = 0;
     trailMembers = trailMembers.reverse();
-    let htmlString =`<table class="table" id="dvlist"> <thead class="thead-light">
+    let htmlString = `<table class="table" id="dvlist"> <thead class="thead-light">
     <tr>
       <th scope="col">#</th>
       <th scope="col"></th>
@@ -109,7 +108,7 @@ $(document).ready(async function () {
         htmlString += `<td><img src="${imageUrl}" class="rounded-circle"></span></td>`;
         htmlString += `<td><span>${trailMembers[i].name}</span></td>`;
         htmlString += `<td><span>${trailMembers[i].sp}</span></td>`;
-        htmlString += `<td><span>${trailMembers[i].vp/100}%</span></td>`;
+        htmlString += `<td><span>${trailMembers[i].vp / 100}%</span></td>`;
         htmlString += '</tr>';
         totalSp += Number(trailMembers[i].sp);
     }
@@ -129,10 +128,12 @@ $(document).ready(async function () {
     <tr>
     <td>${totalSp.toFixed(3)}</td>
     <td>${trailMembers.length}</td>
-    <td>${accountVp/100}%</td>
+    <td>${accountVp / 100}%</td>
   </tr></tbody></table>`;
-  $('div#summary').html(summary);
-  let x = document.getElementById("pleaseWait");
-  x.style.display="none";
+    $('div#summary').html(summary);
+    let x = document.getElementById("pleaseWait");
+    x.style.display = "none";
+
+
 
 });
