@@ -132,5 +132,7 @@ $(document).ready(async function () {
     <td>${accountVp/100}%</td>
   </tr></tbody></table>`;
   $('div#summary').html(summary);
+  let x = document.getElementById("pleaseWait");
+  x.style.display="none";
 
 });
