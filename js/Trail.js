@@ -92,13 +92,13 @@ $(document).ready(async function () {
     let trailMembers = await getAuthorizedList(followers, spv);
     let totalSp = 0;
     trailMembers = trailMembers.reverse();
-    let htmlString = `<table class="table" id="dvlist"> <thead class="thead-light">
+    let htmlString = `<table class="table" id="dvlist" style="width:100%"> <thead class="thead-light">
     <tr>
-      <th scope="col">#</th>
-      <th scope="col"></th>
-      <th scope="col">Steem ID</th>
-      <th scope="col">Steem Power</th>
-      <th scope="col">Voting Power</th>
+      <th >#</th>
+      <th ><i class="fas fa-user-circle"></i></th>
+      <th >Steem ID</th>
+      <th >Steem Power</th>
+      <th >Voting Power</th>
     </tr>
   </thead><tbody>`;
     for (let i in trailMembers) {
@@ -114,8 +114,10 @@ $(document).ready(async function () {
     }
     htmlString += `</tbody></table>`;
     $('div#display').html(htmlString);
-    sorttable.makeSortable(document.getElementById("dvlist"));
-
+    //sorttable.makeSortable(document.getElementById("dvlist"));
+    $('#dvlist').DataTable({
+        "pageLength": 100
+    });
     let summary = `<table class="table table-borderless">
     <thead>
       <tr>
@@ -131,6 +133,7 @@ $(document).ready(async function () {
     <td>${accountVp / 100}%</td>
   </tr></tbody></table>`;
     $('div#summary').html(summary);
+  
     let x = document.getElementById("pleaseWait");
     x.style.display = "none";
 

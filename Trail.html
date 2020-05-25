@@ -4,45 +4,64 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+		integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+		integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/css/dataTables.bootstrap4.min.css">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+
 	<title>cn-trail 跟赞团</title>
 	<style>
-		.loader{
+		.loader {
 			margin: auto;
-			border:16px solid #f3f3f3;
-			border-radius:50%;
-			border-top:16px solid #3498db;
-			width:120px;
-			height:120px;
+			border: 16px solid #f3f3f3;
+			border-radius: 50%;
+			border-top: 16px solid #3498db;
+			width: 120px;
+			height: 120px;
 			animation: spin 2s linear infinite;
 		}
+
 		@keyframes spin {
-			0% {transform: rotate(0deg);}
-			100% {transform:rotate(360deg);}
+			0% {
+				transform: rotate(0deg);
+			}
+
+			100% {
+				transform: rotate(360deg);
+			}
 		}
 	</style>
 </head>
 
 <body>
-	<div class="container pt-3">
+	<div class="container-sm" style="text-align: center;">
 		<h1 style="display: inline;"">cn-trail 跟赞团</h1>
 		  
-		<h5 style="display: inline;">by <a href="https://steemit.com/@ericet" target="_blank" rel="nofollow"">@ericet</a></h5>
+		<h5 style=" display: inline;">by <a href="https://steemit.com/@ericet" target="_blank" rel="nofollow"">@ericet</a></h5>
 			<br />
 			<br />
-			<div class="loader" id="pleaseWait"></div>
-            <div name='summary' id='summary'></div>
-            <div name='display' id='display'></div>
-
-			
+			<div class=" loader" id="pleaseWait">
 	</div>
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	<div name='summary' id='summary'></div>
+	<div name='display' id='display'></div>
+
+
+	</div>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
 		crossorigin="anonymous"></script>
-		<script src="https://cdn.jsdelivr.net/npm/steem/dist/steem.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+		integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/steem/dist/steem.min.js"></script>
 	<script src="js/Trail.js"></script>
 	<script src="js/sorttable.js"></script>
 
