@@ -1,4 +1,4 @@
-steem.api.setOptions({url:"https://api.steemdb.online"});
+steem.api.setOptions({url:"https://s2.61bts.com"});
 
 //get followers list
 function getFollowersList(account, startFollowing = '', limit = 500, followings = {}) {
