@@ -124,9 +124,25 @@ function getVoteListTable(voteList) {
     }
     htmlString += `</tbody></table>`;
     $('div#voteList').html(htmlString);
+    $('div#date').html(`<h1>Daily Upvote List(${getDate()})`);
 }
 
+function getDate() {
+	var today = new Date();
+	today.setDate(today.getDate());
+	var dd = today.getDate();
+	var mm = today.getMonth() + 1;
+	var yyyy = today.getFullYear();
+	if (dd < 10) {
+		dd = '0' + dd;
+	}
 
+	if (mm < 10) {
+		mm = '0' + mm;
+	}
+	today = yyyy + '-' + mm + '-' + dd;
+	return today;
+}
 $(document).ready(async function () {
 
     const [followers, spv, accountVp, voteList] = await Promise.all([getFollowersList('cn-trail'), getSpv(), getVp('cn-trail'), getVoteList()]);
