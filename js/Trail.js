@@ -1,4 +1,4 @@
-steem.api.setOptions({ url: "https://api.justyy.com" });
+steem.api.setOptions({ url: "https://api.steemitdev.com" });
 
 //get followers list
 function getFollowersList(account, startFollowing = '', limit = 500, followings = {}) {
