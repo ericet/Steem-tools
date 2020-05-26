@@ -43,10 +43,22 @@
 		<h5 style=" display: inline;">by <a href="https://steemit.com/@ericet" target="_blank" rel="nofollow"">@ericet</a></h5>
 			<br />
 			<br />
+			<ul class="nav nav-tabs" id="myTab" role="tablist">
+				<li class="nav-item" role="presentation">
+				  <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Trail Members</a>
+				</li>
+				<li class="nav-item" role="presentation">
+				  <a class="nav-link" id="list-tab" data-toggle="tab" href="#list" role="tab" aria-controls="profile" aria-selected="false">Daily Vote List</a>
+				</li>
+			  </ul>
+			  <div class="tab-content" id="myTabContent">
+				<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab"><div name='summary' id='summary'></div>
+				<div name='display' id='display'></div></div>
+				<div class="tab-pane fade" id="list" role="tabpanel" aria-labelledby="list-tab"><div name='voteList' id='voteList'></div></div>
+			  </div>
 			<div class=" loader" id="pleaseWait">
 	</div>
-	<div name='summary' id='summary'></div>
-	<div name='display' id='display'></div>
+	
 
 
 	</div>
@@ -62,8 +74,8 @@
 	<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 	<script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/steem/dist/steem.min.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 	<script src="js/Trail.js"></script>
-	<script src="js/sorttable.js"></script>
 
 </body>
 

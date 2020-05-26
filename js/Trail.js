@@ -85,13 +85,56 @@ function getVPHF20(account) {
     return Math.round(currentManaPerc * 100);
 }
 
+function getVoteList() {
+    return new Promise((resolve, reject) => {
+        const url = 'https://trail.steem.buzz/getList';
+        let upvoteList = [];
+        axios.get(url).then(function (response) {
+            if (response.status == 200) {
+                let data = response.data;
+                for (let d of data) {
+                    upvoteList.push({ account: d.account, sp: d.sp, hasVoted: d.hasVoted })
+                }
+                resolve(upvoteList);
+
+            }
+
+        });
+
+    });
+}
+
+function getVoteListTable(voteList) {
+    let htmlString = `<table class="table" id="votelist" style="width:100%"> <thead class="thead-light">
+    <tr>
+    <th ><i class="fas fa-user-circle"></i></th>
+    <th >Steem ID</th>
+    <th >Steem Power</th>
+    <th >Voted</th>
+  </tr>
+</thead><tbody>`;
+    for (let vote of voteList) {
+        let imageUrl = `https://steemitimages.com/u/${vote.account}/avatar/small`;
+        htmlString += '<tr>';
+        htmlString += `<td><img src="${imageUrl}" class="rounded-circle"></span></td>`;
+        htmlString += `<td><span>${vote.account}</span></td>`;
+        htmlString += `<td><span>${vote.sp}</span></td>`;
+        htmlString += `<td><span>${vote.hasVoted}</span></td>`;
+        htmlString += '</tr>';
+    }
+    htmlString += `</tbody></table>`;
+    $('div#voteList').html(htmlString);
+}
+
 
 $(document).ready(async function () {
 
-    const [followers, spv, accountVp] = await Promise.all([getFollowersList('cn-trail'), getSpv(), getVp('cn-trail')]);
+    const [followers, spv, accountVp, voteList] = await Promise.all([getFollowersList('cn-trail'), getSpv(), getVp('cn-trail'), getVoteList()]);
+    console.log(voteList)
     let trailMembers = await getAuthorizedList(followers, spv);
     let totalSp = 0;
     trailMembers = trailMembers.reverse();
+    getVoteListTable(voteList);
     let htmlString = `<table class="table" id="dvlist" style="width:100%"> <thead class="thead-light">
     <tr>
       <th >#</th>
@@ -114,9 +157,12 @@ $(document).ready(async function () {
     }
     htmlString += `</tbody></table>`;
     $('div#display').html(htmlString);
-    //sorttable.makeSortable(document.getElementById("dvlist"));
     $('#dvlist').DataTable({
         "pageLength": 100
+    });
+    $('#votelist').DataTable({
+        "pageLength": 100
+
     });
     let summary = `<table class="table table-borderless">
     <thead>
@@ -133,7 +179,7 @@ $(document).ready(async function () {
     <td>${accountVp / 100}%</td>
   </tr></tbody></table>`;
     $('div#summary').html(summary);
-  
+
     let x = document.getElementById("pleaseWait");
     x.style.display = "none";
 
