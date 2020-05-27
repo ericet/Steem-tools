@@ -114,12 +114,17 @@ function getVoteListTable(voteList) {
   </tr>
 </thead><tbody>`;
     for (let vote of voteList) {
+        let hasVoted = vote.hasVoted?'Yes':'No';
         let imageUrl = `https://steemitimages.com/u/${vote.account}/avatar/small`;
+        if(vote.hasVoted){
+            htmlString +='<tr class="table-success">';
+        }else{
         htmlString += '<tr>';
+        }
         htmlString += `<td><img src="${imageUrl}" class="rounded-circle"></span></td>`;
         htmlString += `<td><span>${vote.account}</span></td>`;
         htmlString += `<td><span>${vote.sp}</span></td>`;
-        htmlString += `<td><span>${vote.hasVoted}</span></td>`;
+        htmlString += `<td><span>${hasVoted}</span></td>`;
         htmlString += '</tr>';
     }
     htmlString += `</tbody></table>`;
@@ -174,10 +179,12 @@ $(document).ready(async function () {
     htmlString += `</tbody></table>`;
     $('div#display').html(htmlString);
     $('#dvlist').DataTable({
-        "pageLength": 100
+        "pageLength": 100,
+        "order": [[ 3, "desc" ]]
     });
     $('#votelist').DataTable({
-        "pageLength": 100
+        "pageLength": 100,
+        "order": [[ 3, "desc" ]]
 
     });
     let summary = `<table class="table table-borderless">
