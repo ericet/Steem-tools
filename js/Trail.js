@@ -93,7 +93,7 @@ function getVoteList() {
             if (response.status == 200) {
                 let data = response.data;
                 for (let d of data) {
-                    upvoteList.push({ account: d.account, sp: d.sp, hasVoted: d.hasVoted })
+                    upvoteList.push({ account: d.account, sp: d.sp, hasVoted: d.hasVoted,permlink:d.permlink})
                 }
                 resolve(upvoteList);
 
@@ -114,7 +114,7 @@ function getVoteListTable(voteList) {
   </tr>
 </thead><tbody>`;
     for (let vote of voteList) {
-        let hasVoted = vote.hasVoted?'Yes':'No';
+        let hasVoted = vote.hasVoted?`<a href="https://steem.buzz/@${vote.account}/${vote.permlink}">Post Link</a>`:'No';
         let imageUrl = `https://steemitimages.com/u/${vote.account}/avatar/small`;
         if(vote.hasVoted){
             htmlString +='<tr class="table-success">';
@@ -149,9 +149,7 @@ function getDate() {
 	return today;
 }
 $(document).ready(async function () {
-
     const [followers, spv, accountVp, voteList] = await Promise.all([getFollowersList('cn-trail'), getSpv(), getVp('cn-trail'), getVoteList()]);
-    console.log(voteList)
     let trailMembers = await getAuthorizedList(followers, spv);
     let totalSp = 0;
     trailMembers = trailMembers.reverse();
@@ -187,20 +185,38 @@ $(document).ready(async function () {
         "order": [[ 3, "desc" ]]
 
     });
-    let summary = `<table class="table table-borderless">
-    <thead>
-      <tr>
-        <th scope="col">Total SP</th>
-        <th scope="col">Total Members</th>
-        <th scope="col">@cn-trail VP</th>
-      </tr>
-    </thead>
-    <tbody>
-    <tr>
-    <td>${totalSp.toFixed(3)}</td>
-    <td>${trailMembers.length}</td>
-    <td>${accountVp / 100}%</td>
-  </tr></tbody></table>`;
+
+
+  let summary =`<section id="our-stats">
+  <div class="row text-center">
+      <div class="col">
+          
+              <div class="counter">
+                  <i class="fa fa-code fa-2x"></i>
+                  <h2 class="timer count-title count-number" data-to="100" data-speed="1500">${totalSp.toFixed(3)}</h2>
+                  <p class="count-text ">Total Steem Power</p>
+              </div>
+          
+      </div>
+      <div class="col">
+          
+              <div class="counter">
+                  <i class="fa fa-user-friends fa-2x"></i>
+                  <h2 class="timer count-title count-number" data-to="1700" data-speed="1500">${trailMembers.length}</h2>
+                  <p class="count-text ">Total Members</p>
+              </div>
+          
+      </div>
+      <div class="col">
+              <div class="counter">
+                  <i class="fas fa-battery-three-quarters fa-2x"></i>
+                  <h2 class="timer count-title count-number" data-to="11900" data-speed="1500">${accountVp / 100}%</h2>
+                  <p class="count-text ">Voting Power</p>
+              </div>
+      </div>
+  
+  </div>
+</section>`;
     $('div#summary').html(summary);
 
     let x = document.getElementById("pleaseWait");

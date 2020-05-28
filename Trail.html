@@ -33,15 +33,74 @@
 				transform: rotate(360deg);
 			}
 		}
+		.zsx {
+background-color:#228be6;
+}
+
+.zsx h3{
+text-align:center;
+color:#fff;
+}
+
+
+.zsx h3{
+font-size: 50px;
+font-weight:bold;
+font-family:'Buenard', serif;
+text-transform:inherit;
+
+margin: 0px auto 0px;
+text-shadow: 2px 2px 2px #000;
+-webkit-text-shadow: 2px 2px 2px #000;
+-moz-text-shadow: 2px 2px 2px #000;
+}
+
+#our-stats .h1{
+    color: #007b5e!important;
+}
+
+#our-stats a{
+    color: #000!important;
+    text-decoration:none;
+}
+#our-stats i{
+    color: #228be6!important;
+}
+
+#our-stats .counter {
+    background-color: #f5f5f5;
+    padding: 35px 0;
+    border-radius: 5px;
+}
+
+#our-stats .counter i,
+#our-stats .counter .count-title{
+    margin-bottom: 15px;
+}
+
+
+#our-stats .counter p{
+    font-style:italic;
+    margin-bottom:0;
+}
 	</style>
 </head>
 
 <body>
+	<header>
+    	<div class="container-fluid">
+			<div class="row zsx">
+				<div class="col-lg-12 animated lightSpeedIn">
+					<p class="vcenter">
+					<h3><i class="fas fa-users"></i> cn-trail 跟赞团</h3>
+					</p>
+				</div>
+			</div>
+		</div>
+</header>
 	<div class="container-sm" style="text-align: center;">
-		<h1 style="display: inline;"">cn-trail 跟赞团</h1>
-		  			<br />
-			<br />
-			<ul class=" nav nav-tabs" id="myTab" role="tablist">
+					<br />
+			<ul class=" nav nav-tabs justify-content-center" id="myTab" role="tablist">
 			<li class="nav-item" role="presentation">
 				<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
 					aria-selected="true">Trail Members</a>
@@ -51,6 +110,7 @@
 					aria-selected="false">Daily Vote List</a>
 			</li>
 			</ul>
+			<br/>
 			<div class="tab-content" id="myTabContent">
 				<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 					<div name='summary' id='summary'></div>
